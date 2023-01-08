@@ -8,6 +8,7 @@ import NotFound from './Components/NotFound';
 import Products from './Components/Products';
 import SignUp from './Components/SignUp';
 import UpdateProduct from './Components/UpdateProduct';
+import ProtectedRoute from './Components/ProtectedRoute';
 
 function App() {
   return (
@@ -17,11 +18,46 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
 
-        <Route path='/dashboard' element={<Dashboard />}>
-          <Route path='' element={<DashboardContent />} />
-          <Route path='products' element={<Products />} />
-          <Route path='products/:id' element={<UpdateProduct />} />
-          <Route path='products/new' element={<CreateProduct />} />
+        <Route
+          path='/dashboard'
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        >
+          <Route
+            path=''
+            element={
+              <ProtectedRoute>
+                <DashboardContent />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='products'
+            element={
+              <ProtectedRoute>
+                <Products />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='products/:id'
+            element={
+              <ProtectedRoute>
+                <UpdateProduct />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='products/new'
+            element={
+              <ProtectedRoute>
+                <CreateProduct />
+              </ProtectedRoute>
+            }
+          />
         </Route>
 
         <Route path='*' element={<NotFound />} />
