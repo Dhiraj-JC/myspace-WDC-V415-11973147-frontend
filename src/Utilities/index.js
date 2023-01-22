@@ -30,3 +30,8 @@ function getTokenConfig() {
   };
   return config;
 }
+
+export function getConvertStringNumberToNumber(stringNumber) {
+  const convertedValue = +stringNumber;
+  return convertedValue;
+}
