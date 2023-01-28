@@ -17,8 +17,10 @@ export default function CreateProduct() {
 
   const navigate = useNavigate();
 
-  function setNameAndNameError(value) {
-    value = value.trim();
+  function setNameAndNameError(value, isOnBlur = false) {
+    if(isOnBlur) {
+      value = value.trim();
+    }
     setName(value);
     if (value === '') {
       setNameError('Please enter product name');
@@ -27,8 +29,11 @@ export default function CreateProduct() {
     }
   }
 
-  function setDescriptionAndDescriptionError(value) {
-    value = value.trim();
+  function setDescriptionAndDescriptionError(value, isOnBlur) {
+    if(isOnBlur) {
+      value = value.trim();
+    }
+    
     setDescription(value);
 
     if (value === '') {
@@ -107,7 +112,7 @@ export default function CreateProduct() {
                 maxLength={40}
                 value={name}
                 onChange={(event) => setNameAndNameError(event.target.value)}
-                onBlur={(event) => setNameAndNameError(event.target.value)}
+                onBlur={(event) => setNameAndNameError(event.target.value,true)}
               />
               {nameError && <span className='text-danger'>{nameError}</span>}
             </div>
@@ -125,7 +130,7 @@ export default function CreateProduct() {
                   setDescriptionAndDescriptionError(event.target.value)
                 }
                 onBlur={(event) =>
-                  setDescriptionAndDescriptionError(event.target.value)
+                  setDescriptionAndDescriptionError(event.target.value,true)
                 }
               />
               {descriptionError && (
