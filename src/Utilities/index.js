@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:8000/';
+const baseUrl = 'https://myspace-wdc-v415-11973147-api.onrender.com/';
 
 export function customPOST(url, requestBody) {
   const config = getTokenConfig();
