@@ -9,6 +9,9 @@ import Products from './Components/Products';
 import SignUp from './Components/SignUp';
 import UpdateProduct from './Components/UpdateProduct';
 import ProtectedRoute from './Components/ProtectedRoute';
+import Books from './Components/Books';
+import CreateBook from './Components/CreateBook';
+import UpdateBook from './Components/UpdateBook';
 
 function App() {
   return (
@@ -55,6 +58,30 @@ function App() {
             element={
               <ProtectedRoute>
                 <CreateProduct />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='books'
+            element={
+              <ProtectedRoute>
+                <Books />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='books/:id'
+            element={
+              <ProtectedRoute>
+                <UpdateBook />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='books/new'
+            element={
+              <ProtectedRoute>
+                <CreateBook />
               </ProtectedRoute>
             }
           />

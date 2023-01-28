@@ -36,6 +36,11 @@ export default function Dashboard() {
                 Products
               </Link>
             </li>
+            <li className='nav-item'>
+              <Link className='nav-link p-3' to='/dashboard/books'>
+                Books
+              </Link>
+            </li>
           </ul>
         </div>
         <button className='btn p-3 text-primary bg-white' onClick={logout}>
