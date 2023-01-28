@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { customGET } from '../Utilities/index';
+import { customGET, customDELETE } from '../Utilities/index';
 import Book from './Book';
 
 export default function Books() {
@@ -10,6 +10,17 @@ export default function Books() {
   useEffect(() => {
     customGET('books').then((response) => setBooks(response.data));
   }, []);
+
+  function onDelete(id) {
+    if (window.confirm('Do you really want to delete this item?')) {
+      customDELETE(`books/${id}`).then((response) => {
+        const nonDeletedBooks = books.filter(
+          (book) => book._id !== response.data._id
+        );
+        setBooks(nonDeletedBooks);
+      });
+    }
+  }
 
   return (
     <>
@@ -31,7 +42,7 @@ export default function Books() {
         <div className='row mt-5'>
           {books.map((book) => (
             <div className='col-3' key={book._id}>
-              <Book book={book} />
+              <Book book={book} onDelete={onDelete} />
             </div>
           ))}
         </div>
